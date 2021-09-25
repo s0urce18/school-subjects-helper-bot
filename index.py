@@ -5,7 +5,7 @@ from fuzzywuzzy import process
 
 print("Bot is running")
 
-bot = telebot.TeleBot('')
+bot = telebot.TeleBot('1614309528:AAGnMjq8sZd9mZRaYARE_VeK_QgZSv4HdeU')
 
 admin = "0"
 ausername = "0"
@@ -55,7 +55,7 @@ def help_messaage(message):
 
 @bot.message_handler(commands=['about'])
 def about_messaage(message):
-    bot.send_message(message.from_user.id, "Я бот-справочник физики")
+    bot.send_message(message.from_user.id, "Я бот-справочник")
 
 @bot.message_handler(commands=['review'])
 def review_message(message):
@@ -82,26 +82,32 @@ def welcome_message(message):
     print("____Bot____: "+str(user))
     print("____User____: "+str(message))
     bot.send_message(message.from_user.id, "Привет")
-    keyboard = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True, one_time_keyboard=True)
-    keyboard.add('Формулы',
-                 'Константы',
-                 'Десятичные приставки',
-                 'Единицы измерения',
-                 'Соотношение между различными единицами',
-                 'Масса частиц',
-                 'Плотность',
-                 'Удельная теплоемкость',
-                 'Молярные массы',
-                 'Плавление элементов',
-                 'Удельное сопротивление',
-                 'Масса атомов')
-    bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
+    keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, one_time_keyboard=True)
+    keyboard.add('Физика',
+                 'Математика')
+    bot.send_message(message.from_user.id, "Какой предмет?", reply_markup=keyboard)
 
 @bot.message_handler(content_types=['text'])
 def general_message(message):
     hideBoard = types.ReplyKeyboardRemove()
+    #phys--------------------------------------------------------------------------------------------------------
+    if message.text.lower() == 'физика':
+        keyboard = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True, one_time_keyboard=True)
+        keyboard.add('Формулы',
+                     'Константы',
+                     'Десятичные приставки',
+                     'Единицы измерения',
+                     'Соотношение между различными единицами',
+                     'Масса частиц',
+                     'Плотность',
+                     'Удельная теплоемкость',
+                     'Молярные массы',
+                     'Плавление элементов',
+                     'Удельное сопротивление',
+                     'Масса атомов')
+        bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
     #formulas----------------------------------------------------------------------------------------------------
-    if message.text.lower() == 'формулы':
+    elif message.text.lower() == 'формулы':
         keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True, one_time_keyboard=True)
         keyboard.add('Механика',
                      'Законы сохранения в механике',
@@ -119,40 +125,40 @@ def general_message(message):
                      'Статика')
         bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
     elif message.text.lower() == 'кинематика':
-        bot.send_photo(message.from_user.id, photo=open('photos/Кинематика.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Кинематика.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'динамика':
-        bot.send_photo(message.from_user.id, photo=open('photos/Динамика.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Динамика.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'статика':
-        bot.send_photo(message.from_user.id, photo=open('photos/Статика.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Статика.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'законы сохранения в механике':
         keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, one_time_keyboard=True)
         keyboard.add('Закон сохранения импульса',
                      'Закон сохранения энергии')
         bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
     elif message.text.lower() == 'закон сохранения импульса':
-        bot.send_photo(message.from_user.id, photo=open('photos/Закон сохранения импульса.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Закон сохранения импульса.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'закон сохранения энергии':
-        bot.send_photo(message.from_user.id, photo=open('photos/Закон сохранения энергии1.png', 'rb'), reply_markup=hideBoard)
-        bot.send_photo(message.from_user.id, photo=open('photos/Закон сохранения энергии2.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Закон сохранения энергии1.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Закон сохранения энергии2.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'колебания и волны':
-        bot.send_photo(message.from_user.id, photo=open('photos/Колебания и волны.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Колебания и волны.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'молекулярная физика. тепловые явления':
-        bot.send_photo(message.from_user.id, photo=open('photos/Молекулярная физика. Тепловые явления1.png', 'rb'))
-        bot.send_photo(message.from_user.id, photo=open('photos/Молекулярная физика. Тепловые явления2.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Молекулярная физика. Тепловые явления1.png', 'rb'))
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Молекулярная физика. Тепловые явления2.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'гидростатика':
-        bot.send_photo(message.from_user.id, photo=open('photos/Гидростатика.png', 'rb'))
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Гидростатика.png', 'rb'))
     elif message.text.lower() == 'электродинамика':
-        bot.send_photo(message.from_user.id, photo=open('photos/Электродинамика1.png', 'rb'))
-        bot.send_photo(message.from_user.id, photo=open('photos/Электродинамика2.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Электродинамика1.png', 'rb'))
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Электродинамика2.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'оптика':
-        bot.send_photo(message.from_user.id, photo=open('photos/Оптика.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Оптика.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'квантовая физика':
-        bot.send_photo(message.from_user.id, photo=open('photos/Квантовая физика.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Квантовая физика.png', 'rb'), reply_markup=hideBoard)
     #other----------------------------------------------------------------------------------------------------
     elif message.text.lower() == 'константы':
-        bot.send_photo(message.from_user.id, photo=open('photos/Константы.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Константы.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'десятичные приставки':
-        bot.send_photo(message.from_user.id, photo=open('photos/Десятичные приставки.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Десятичные приставки.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'единицы измерения':
         keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True, one_time_keyboard=True)
         keyboard.add('СИ',
@@ -161,32 +167,136 @@ def general_message(message):
                      'Время')
         bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
     elif message.text.lower() == 'си':
-    	bot.send_photo(message.from_user.id, photo=open('photos/СИ1.png', 'rb'))
-    	bot.send_photo(message.from_user.id, photo=open('photos/СИ2.png', 'rb'), reply_markup=hideBoard)
+    	bot.send_photo(message.from_user.id, photo=open('photos/Физика/СИ1.png', 'rb'))
+    	bot.send_photo(message.from_user.id, photo=open('photos/Физика/СИ2.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'производные от си':
-    	bot.send_photo(message.from_user.id, photo=open('photos/Производные от СИ.png', 'rb'), reply_markup=hideBoard)
+    	bot.send_photo(message.from_user.id, photo=open('photos/Физика/Производные от СИ.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'основные':
-    	bot.send_photo(message.from_user.id, photo=open('photos/Основные.png', 'rb'), reply_markup=hideBoard)
+    	bot.send_photo(message.from_user.id, photo=open('photos/Физика/Основные.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'время':
-    	bot.send_photo(message.from_user.id, photo=open('photos/Время.png', 'rb'), reply_markup=hideBoard)
+    	bot.send_photo(message.from_user.id, photo=open('photos/Физика/Время.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'соотношение между различными единицами':
-        bot.send_photo(message.from_user.id, photo=open('photos/Соотношение между различными единицами.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Соотношение между различными единицами.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'масса частиц':
-        bot.send_photo(message.from_user.id, photo=open('photos/Масса частиц.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Масса частиц.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'плотность':
-        bot.send_photo(message.from_user.id, photo=open('photos/Плотность.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Плотность.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'удельная теплоемкость':
-        bot.send_photo(message.from_user.id, photo=open('photos/Удельная теплоемкость.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Удельная теплоемкость.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'молярные массы':
-        bot.send_photo(message.from_user.id, photo=open('photos/Молярные массы.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Молярные массы.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'плавление элементов':
-        bot.send_photo(message.from_user.id, photo=open('photos/Плавление элементов.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Плавление элементов.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'удельное сопротивление':
-        bot.send_photo(message.from_user.id, photo=open('photos/Удельное сопротивление.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Удельное сопротивление.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'масса атомов':
-        bot.send_photo(message.from_user.id, photo=open('photos/Масса атомов.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/Масса атомов.png', 'rb'), reply_markup=hideBoard)
+    #math--------------------------------------------------------------------------------------------------------
+    elif message.text.lower() == 'математика':
+        keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True, one_time_keyboard=True)
+        keyboard.add('Алгебра',
+                     'Геометрия',
+                     'Триганометрия',
+                     'Таблицы')
+        bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
+    elif message.text.lower() == 'алгебра':
+        keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True, one_time_keyboard=True)
+        keyboard.add('Формулы сокращенного умножения',
+                     'Парабола',
+                     'Свойства степеней и корней',
+                     'Лагорифмы',
+                     'Арифметическая прогрессия',
+                     'Геометрическая прогрессия',
+                     'Квадратные уравнения')
+        bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
+    elif message.text.lower() == 'формулы сокращенного умножения':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Формулы сокращенного умножения.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'парабола':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Парабола.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'свойства степеней и корней':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Свойства степеней и корней.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'лагорифмы':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Лагорифмы.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'арифметическая прогрессия':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Арифметическая прогрессия.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'геометрическая прогрессия':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрическая прогрессия.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'квадратные уравнения':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Квадратные уравнения.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'геометрия':
+        keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True, one_time_keyboard=True)
+        keyboard.add('Геометрия треугольников',
+                     'Геометрия многоугольников',
+                     'Геометрия кругов',
+                     'Геометрия вписаных и описаных многоугольников',
+                     'Геометрия в пространстве (стереометрия)')
+        bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
+    elif message.text.lower() == 'геометрия треугольников':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрия треугольников 1.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрия треугольников 2.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрия треугольников 3.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'геометрия многоугольников':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрия многоугольников.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'геометрия треугольников':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрия кругов 1.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрия кругов 2.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрия кругов 3.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'геометрия вписаных и описаных многоугольников':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрия вписаных и описаных многоугольников.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'геометрия в пространстве (стереометрия)':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Стереометрия.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'триганометрия':
+        keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True, one_time_keyboard=True)
+        keyboard.add('Простая триганометрия',
+                     'Формулы двойного угла',
+                     'Формулы половинного угла',
+                     'Тригонометрические формулы сложения',
+                     'Тригонометрические формулы преобразования суммы в произведение',
+                     'Тригонометрические формулы преобразования произведения в сумму',
+                     'Формулы понижения степени',
+                     'Тригонометрические формулы приведения',
+                     'Тригонометрическая окружность')
+        bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
+    elif message.text.lower() == 'простая триганометрия':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Простая триганометрия.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'формулы половинного угла':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Формулы половинного угла.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'тригонометрические формулы сложения':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Тригонометрические формулы сложения.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'тригонометрические формулы преобразования суммы в произведение':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Тригонометрические формулы преобразования суммы в произведение.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'тригонометрические формулы преобразования произведения в сумму':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Тригонометрические формулы преобразования произведения в сумму.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'формулы понижения степени':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Формулы понижения степени.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'тригонометрические формулы приведения':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Тригонометрические формулы приведения.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'тригонометрическая окружность':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Тригонометрическая окружность.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'таблицы':
+        keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, one_time_keyboard=True)
+        keyboard.add('Таблица умножения',
+                     'Таблицы квадратов')
+        bot.send_message(message.from_user.id, "Какие?", reply_markup=keyboard)
+    elif message.text.lower() == 'таблица умножения':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Таблица умножения.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'таблицы квадратов':
+        keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, one_time_keyboard=True)
+        keyboard.add('Таблица квадратов от 1 до 100',
+                     'Таблица квадратов от 100 до 200',
+                     'Таблица квадратов от 200 до 300')
+        bot.send_message(message.from_user.id, "Какая?", reply_markup=keyboard)
+    elif message.text.lower() == 'таблица квадратов от 1 до 100':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Таблица квадратов от 1 до 100.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'таблица квадратов от 100 до 200':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Таблица квадратов от 100 до 200.png', 'rb'), reply_markup=hideBoard)
+    elif message.text.lower() == 'таблица квадратов от 200 до 300':
+        bot.send_photo(message.from_user.id, photo=open('photos/Математика/Таблица квадратов от 200 до 300.png', 'rb'), reply_markup=hideBoard)
     else:
         strings = ['Формулы',
+                   'Алгебра',
+                   'Геометрия',
+                   'Триганометрия',
                    'Константы',
                    'Десятичные приставки',
                    'Единицы измерения',
@@ -214,7 +324,35 @@ def general_message(message):
                    'Производные от СИ',
                    'СИ',
                    'Основные',
-                   'Время']
+                   'Время',
+                   'Таблица умнождения',
+                   'Таблицы квадратов',
+                   'Формулы сокращенного умножения',
+                   'Парабола',
+                   'Свойства степеней и корней',
+                   'Лагорифмы',
+                   'Арифметическая прогрессия',
+                   'Геометрическая прогрессия',
+                   'Квадратные уравнения',
+                   'Геометрия треугольников',
+                   'Геометрия многоугольников',
+                   'Геометрия кругов',
+                   'Геометрия вписаных и описаных многоугольников',
+                   'Геометрия в пространстве (стереометрия)',
+                   'Простая триганометрия',
+                   'Формулы двойного угла',
+                   'Формулы половинного угла',
+                   'Тригонометрические формулы сложения',
+                   'Тригонометрические формулы преобразования суммы в произведение',
+                   'Тригонометрические формулы преобразования произведения в сумму',
+                   'Формулы понижения степени',
+                   'Тригонометрические формулы приведения',
+                   'Тригонометрическая окружность',
+                   'Таблица умножения',
+                   'Таблицы квадратов',
+                   'Таблица квадратов от 1 до 100',
+                   'Таблица квадратов от 100 до 200',
+                   'Таблица квадратов от 200 до 300']
         res = process.extractOne(message.text.lower(), strings)[0]
         bot.send_message(message.from_user.id, 'Возможно вы имелли ввиду "'+res+'"')
         message.text = res
