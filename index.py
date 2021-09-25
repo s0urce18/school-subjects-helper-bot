@@ -5,7 +5,7 @@ from fuzzywuzzy import process
 
 print("Bot is running")
 
-bot = telebot.TeleBot('1614309528:AAGnMjq8sZd9mZRaYARE_VeK_QgZSv4HdeU')
+bot = telebot.TeleBot('')
 
 admin = "0"
 ausername = "0"
