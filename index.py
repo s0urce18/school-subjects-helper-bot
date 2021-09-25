@@ -196,7 +196,7 @@ def general_message(message):
         keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True, one_time_keyboard=True)
         keyboard.add('Алгебра',
                      'Геометрия',
-                     'Триганометрия',
+                     'Тригонометрия',
                      'Таблицы')
         bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
     elif message.text.lower() == 'алгебра':
@@ -245,9 +245,9 @@ def general_message(message):
         bot.send_photo(message.from_user.id, photo=open('photos/Математика/Геометрия вписаных и описаных многоугольников.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'геометрия в пространстве (стереометрия)':
         bot.send_photo(message.from_user.id, photo=open('photos/Математика/Стереометрия.png', 'rb'), reply_markup=hideBoard)
-    elif message.text.lower() == 'триганометрия':
+    elif message.text.lower() == 'тригонометрия':
         keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True, one_time_keyboard=True)
-        keyboard.add('Простая триганометрия',
+        keyboard.add('Простая тригонометрия',
                      'Формулы двойного угла',
                      'Формулы половинного угла',
                      'Тригонометрические формулы сложения',
@@ -296,7 +296,7 @@ def general_message(message):
         strings = ['Формулы',
                    'Алгебра',
                    'Геометрия',
-                   'Триганометрия',
+                   'Тригонометрия',
                    'Константы',
                    'Десятичные приставки',
                    'Единицы измерения',
@@ -339,7 +339,7 @@ def general_message(message):
                    'Геометрия кругов',
                    'Геометрия вписаных и описаных многоугольников',
                    'Геометрия в пространстве (стереометрия)',
-                   'Простая триганометрия',
+                   'Простая тригонометрия',
                    'Формулы двойного угла',
                    'Формулы половинного угла',
                    'Тригонометрические формулы сложения',
