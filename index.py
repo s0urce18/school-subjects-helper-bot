@@ -168,7 +168,7 @@ def general_message(message):
         bot.send_message(message.from_user.id, "Какой раздел?", reply_markup=keyboard)
     elif message.text.lower() == 'си':
     	bot.send_photo(message.from_user.id, photo=open('photos/Физика/СИ1.png', 'rb'))
-    	bot.send_photo(message.from_user.id, photo=open('photos/Физика/СИ2.png', 'rb'), reply_markup=hideBoard)
+        bot.send_photo(message.from_user.id, photo=open('photos/Физика/СИ2.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'производные от си':
     	bot.send_photo(message.from_user.id, photo=open('photos/Физика/Производные от СИ.png', 'rb'), reply_markup=hideBoard)
     elif message.text.lower() == 'основные':
